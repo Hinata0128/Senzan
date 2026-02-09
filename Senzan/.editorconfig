@@ -1,0 +1,7 @@
+# Shader ディレクトリ配下の .hlsl と .hlsli を UTF-8 (BOMなし) に設定
+
+[Data/Shader/**/*.hlsl]
+charset = utf-8
+
+[Data/Shader/**/*.hlsli]
+charset = utf-8

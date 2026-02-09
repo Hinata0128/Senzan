@@ -1,0 +1,22 @@
+{
+    "AButton": 4096,
+    "BButton": 8192,
+    "Back": 32,
+    "Down": 2,
+    "LStick_Down": 131072,
+    "LStick_Left": 262144,
+    "LStick_Right": 524288,
+    "LStick_Up": 65536,
+    "LTrigger": 1048576,
+    "Left": 4,
+    "LeftShoulder": 256,
+    "LeftThumb": 64,
+    "RTrigger": 2097152,
+    "Right": 8,
+    "RightShoulder": 512,
+    "RightThumb": 128,
+    "Start": 16,
+    "Up": 1,
+    "XButton": 16384,
+    "YButton": 32768
+}

@@ -1,0 +1,12 @@
+{
+    "Attack": 1,
+    "Dodge": 160,
+    "Jump": 32,
+    "MoveDown": 83,
+    "MoveLeft": 65,
+    "MoveRight": 68,
+    "MoveUp": 87,
+    "Parry": 2,
+    "Pause": 27,
+    "SpecialAttack": 81
+}

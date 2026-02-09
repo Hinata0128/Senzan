@@ -1,0 +1,25 @@
+{
+  "DefaultFOV": 0.8726646304130554,
+  "Distance": 17.299999237060547,
+  "ExplicitCameraPosOffset": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "ExplicitLookPosOffset": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "FollowSpeed": 5.199999809265137,
+  "HeightOffset": 5.599999904632568,
+  "LookLerp": 0.8299999833106995,
+  "LookOffset": 8.100000381469727,
+  "ParryFOV": 0.6981316804885864,
+  "ParryForwardOffset": -0.7400000095367432,
+  "ParryHoldDuration": 0.14000000059604645,
+  "ParryHorizontalOffset": -8.470000267028809,
+  "ParryOutDuration": 0.1899999976158142,
+  "ParryPhaseInDuration": 0.20000000298023224,
+  "UseExplicitTarget": false
+}

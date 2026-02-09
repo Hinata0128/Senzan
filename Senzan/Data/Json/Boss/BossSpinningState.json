@@ -1,0 +1,63 @@
+﻿{
+  "AnimSpeeds": {
+    "Attack": 120.0,
+    "Charge": 1.5,
+    "Exit": 1.5
+  },
+  "ColliderWindows": [
+    {
+      "BoneName": "boss_Spinning",
+      "duration": 0.333,
+      "justTime": 0.4,
+      "offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "start": 1.574
+    },
+    {
+      "BoneName": "boss_Spinning",
+      "duration": 0.2,
+      "justTime": 0.4,
+      "offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "start": 3.133
+    }
+  ],
+  "EasingType": 3,
+  "MovementWindows": [
+    {
+      "direction_offset_deg": 0.0,
+      "distance": 3.0,
+      "duration": 0.667,
+      "easing": 3,
+      "speed": 10.0,
+      "start": 1.533,
+      "use_direction_offset": true
+    },
+    {
+      "direction_offset_deg": 0.0,
+      "distance": 1.0,
+      "duration": 0.667,
+      "easing": 3,
+      "speed": 10.0,
+      "start": 2.933,
+      "use_direction_offset": true
+    }
+  ],
+  "RotateTotalDeg": 0.0,
+  "m_AttackAmount": 8.0,
+  "m_AttackBoneName": "boss_Spinning",
+  "m_AttackTime": 2.778,
+  "m_ChargeTime": 1.574,
+  "m_ColliderHeight": 40.06399917602539,
+  "m_ColliderWidth": 16.025999069213867,
+  "m_EndTime": 1.333,
+  "m_TransitionOnAnimEnd_Attack": false,
+  "m_TransitionOnAnimEnd_Charge": true,
+  "m_TransitionOnAnimEnd_Exit": false
+}

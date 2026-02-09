@@ -1,0 +1,28 @@
+{
+  "AnimSpeeds": {
+    "Attack": 1.0,
+    "Charge": 1.0,
+    "Exit": 1.0
+  },
+  "ColliderWindows": [],
+  "DownAnimSpeed": 1.8279999494552612,
+  "DownContinueDuration": 3.0,
+  "DownTransitionTime": 0.30000001192092896,
+  "GetUpAnimSpeed": 1.7890000343322754,
+  "GetUpTransitionTime": 0.5,
+  "MovementWindows": [],
+  "TakeDamageAnimSpeed": 1.8389999866485596,
+  "TakeDamageDuration": 2.0,
+  "TakeDamageReplayEnabled": true,
+  "TakeDamageReplayTime": 0.5,
+  "m_AttackAmount": 0.0,
+  "m_AttackBoneName": "",
+  "m_AttackTime": 0.0,
+  "m_ChargeTime": 0.0,
+  "m_ColliderHeight": 0.0,
+  "m_ColliderWidth": 0.0,
+  "m_EndTime": 2.0,
+  "m_TransitionOnAnimEnd_Attack": false,
+  "m_TransitionOnAnimEnd_Charge": false,
+  "m_TransitionOnAnimEnd_Exit": false
+}

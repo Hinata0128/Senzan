@@ -1,0 +1,52 @@
+[Window][Debug##Default]
+Pos=60,60
+Size=400,400
+Collapsed=0
+
+[Window][Scene]
+Pos=60,60
+Size=130,262
+Collapsed=0
+
+[Window][Boss Debug]
+Pos=60,60
+Size=356,120
+Collapsed=0
+
+[Window][PlayerStateDebug]
+Pos=60,60
+Size=111,64
+Collapsed=0
+
+[Window][Gamemain Debug]
+Pos=60,60
+Size=107,114
+Collapsed=0
+
+[Window][フレームキャプチャ]
+Pos=60,60
+Size=297,324
+Collapsed=0
+
+[Window][Boss Attack Debug]
+Pos=60,60
+Size=415,550
+Collapsed=1
+
+[Window][BossSpinning State]
+Pos=60,60
+Size=196,124
+Collapsed=0
+
+[Window][Boss Attack State]
+Pos=60,60
+Size=785,1026
+Collapsed=1
+
+[Window][Camera Debug]
+Pos=60,60
+Size=126,176
+Collapsed=0
+
+[Docking][Data]
+
