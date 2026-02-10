@@ -37,21 +37,6 @@
 
 #include <algorithm> // std::min のために必要
 
-// コンテニュー回数の静的変数定義
-int GameMain::s_ContinueCount = 0;
-
-// コンテニュー回数に応じたBoss HP倍率を取得
-float GameMain::GetBossHPMultiplier()
-{
-	switch (s_ContinueCount)
-	{
-	case 0:  return 1.0f;   // 100%
-	case 1:  return 0.9f;   // 90%
-	case 2:  return 0.8f;   // 80%
-	case 3:  return 0.6f;   // 60%
-	default: return 0.5f;   // 4回以降は50%
-	}
-}
 
 // コンストラクタ.
 GameMain::GameMain()
@@ -82,8 +67,6 @@ GameMain::~GameMain()
 
 void GameMain::Initialize()
 {
-    // コンテニュー回数に応じてBossのHPを設定
-    m_upBoss->SetHPMultiplier(GetBossHPMultiplier());
 
     // ライト設定.
     m_spLight->SetDirection(DirectX::XMFLOAT3(1.5f, 1.f, -1.f));
@@ -175,8 +158,6 @@ void GameMain::Update()
                 SoundManager::GetInstance().Play("Decide");
                 SoundManager::GetInstance().SetVolume("Decide", 8000);
 
-                // コンテニュー回数をインクリメント（次回シーンロード時にBoss HPに反映）
-                IncrementContinueCount();
 
                 SceneManager::LoadScene(eList::GameMain, false);
 
@@ -187,8 +168,6 @@ void GameMain::Update()
                 SoundManager::GetInstance().Play("Decide");
                 SoundManager::GetInstance().SetVolume("Decide", 8000);
 
-                // タイトルへ戻る際にコンテニュー回数をリセット
-                ResetContinueCount();
 
                 SceneManager::LoadScene(eList::Title);
             }

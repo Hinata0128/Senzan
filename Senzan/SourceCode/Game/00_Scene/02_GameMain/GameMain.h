@@ -35,22 +35,9 @@ public:
 
 	HRESULT LoadData();
 
-	// コンテニュー回数に応じたBoss HP倍率を取得
-	// 0回: 100%, 1回: 90%, 2回: 80%, 3回: 60%, 4回以降: 50%
-	static float GetBossHPMultiplier();
-
-	// コンテニュー回数をリセット
-	static void ResetContinueCount() { s_ContinueCount = 0; }
-
-	// コンテニュー回数をインクリメント
-	static void IncrementContinueCount() { ++s_ContinueCount; }
 
 private:
 	void UIUpdate();
-
-	// コンテニュー回数（シーン間で保持）
-	static int s_ContinueCount;
-
 private:
 
 	std::shared_ptr<CameraBase>			m_spCamera;			// カメラ.
