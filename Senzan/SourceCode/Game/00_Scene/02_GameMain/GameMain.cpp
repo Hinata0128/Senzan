@@ -146,7 +146,7 @@ void GameMain::Update()
         SoundManager::Play("Ending");
         SoundManager::SetVolume("Ending", 8000);
     }
-    else if ((m_upPlayer->GetHP() <= 0 || Time::GetInstance().IsTimerJustFinished()) && !m_upUIOver) {
+    else if ((m_upPlayer->GetHP() <= 0 || Time::GetInstance().IsTimerJustFinished()) && !m_upUIOver && !m_upUIEnding) {
         m_upUIOver = std::make_shared<UIGameOver>();
         // コンテニュー画面ではキャプチャを停止（バッファに入れない）
         FrameCaptureManager::GetInstance().PauseRollingCapture();
@@ -175,10 +175,10 @@ void GameMain::Update()
                 SoundManager::GetInstance().Play("Decide");
                 SoundManager::GetInstance().SetVolume("Decide", 8000);
 
-                // 巻き戻し開始（FrameCaptureManagerが巻き戻し完了後にシーンをリセットする）
-                FrameCaptureManager::GetInstance().SetPlaybackTriggerKey(true);
                 // コンテニュー回数をインクリメント（次回シーンロード時にBoss HPに反映）
                 IncrementContinueCount();
+
+                SceneManager::LoadScene(eList::GameMain, false);
 
                 return;
             }
