@@ -282,6 +282,7 @@
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\03_SnowBall\SnowBallManager.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\02_UIObject\TimerWarning\TimerWarning.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\02_UIObject\ULTSparkle\ULTSparkle.cpp" />
+    <ClCompile Include="SourceCode\System\Singleton\Debug\CollisionVisualizer\CollisionVisualizer.cpp" />
     <ClCompile Include="SourceCode\System\Singleton\FrameCaptureManager\FrameCaptureManager.cpp" />
     <ClCompile Include="SourceCode\System\Singleton\ParryManager\ParryManager.cpp" />
     <ClCompile Include="SourceCode\System\Singleton\SnowBallManager\SnowBallManager.cpp" />
@@ -352,7 +353,6 @@
     <ClCompile Include="SourceCode\System\GameLoop\Loader.cpp" />
     <ClCompile Include="SourceCode\System\GameLoop\Main.cpp" />
     <ClCompile Include="SourceCode\System\GameLoop\WinMain.cpp" />
-    <ClCompile Include="SourceCode\System\Singleton\Debug\CollisionVisualizer\CollisionVisualizer.cpp" />
     <ClCompile Include="SourceCode\System\Singleton\ImGui\CImGuiManager.cpp" />
     <ClCompile Include="SourceCode\System\Singleton\CombatCoordinator\CombatCoordinator.cpp" />
     <ClCompile Include="SourceCode\System\Singleton\PostEffectManager\PostEffectManager.cpp" />
@@ -393,6 +393,8 @@
     <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\03_SnowBall\SnowBallManager.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\02_UIObject\TimerWarning\TimerWarning.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\02_UIObject\ULTSparkle\ULTSparkle.h" />
+    <ClInclude Include="SourceCode\System\Singleton\Debug\CollisionVisualizer\CollisionVisualizer.h" />
+    <ClInclude Include="SourceCode\System\Singleton\Debug\Log\DebugLog.h" />
     <ClInclude Include="SourceCode\System\Singleton\FrameCaptureManager\FrameCaptureManager.h" />
     <ClInclude Include="SourceCode\System\Singleton\ParryManager\ParryManager.h" />
     <ClInclude Include="SourceCode\System\Singleton\SnowBallManager\SnowBallManager.h" />
@@ -507,8 +509,6 @@
     <ClInclude Include="SourceCode\stdafx.h" />
     <ClInclude Include="SourceCode\System\GameLoop\Loader.h" />
     <ClInclude Include="SourceCode\System\GameLoop\Main.h" />
-    <ClInclude Include="SourceCode\System\Singleton\Debug\CollisionVisualizer\CollisionVisualizer.h" />
-    <ClInclude Include="SourceCode\System\Singleton\Debug\Log\DebugLog.h" />
     <ClInclude Include="SourceCode\System\Singleton\ImGui\CImGuiManager.h" />
     <ClInclude Include="SourceCode\System\Singleton\ResourceManager\ResourceManager.h" />
     <ClInclude Include="SourceCode\System\Singleton\ResourceManager\MeshManager\MeshManager.h" />
