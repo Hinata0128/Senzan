@@ -36,9 +36,11 @@ void BossSlashState::Enter()
     // 斬るアニメーションの再生.
     m_pOwner->ChangeAnim(Boss::enBossAnim::Slash);
 
+    FacePlayerInstantYaw();
+
 	// 初期位置を保存.
-	const DirectX::XMFLOAT3 BossPosF = m_pOwner->GetPosition();
-	DirectX::XMStoreFloat3(&m_StartPos, DirectX::XMLoadFloat3(&BossPosF));
+	//const DirectX::XMFLOAT3 BossPosF = m_pOwner->GetPosition();
+	//DirectX::XMStoreFloat3(&m_StartPos, DirectX::XMLoadFloat3(&BossPosF));
 
 	m_List = enList::ChargeSlash;
 }
@@ -47,15 +49,23 @@ void BossSlashState::Update()
 {
     BossAttackStateBase::Update();
 
-    const float dt = m_pOwner->GetDelta();
+    const float deltaTime = m_pOwner->GetDelta();
     
-    UpdateBaseLogic(dt);
+    UpdateBaseLogic(deltaTime);
+
+    //ボスが攻撃しているときもプレイヤーの方を向かせ続けるための処理.
+    if (m_List == enList::SlashAttack)
+    {
+        //毎フレームプレイヤーの方を向き続ける.
+        //BossAttackStateBas内の関数を呼んできている.
+        FacePlayerYawContinuous();
+    }
 
     switch (m_List)
     {
     case BossSlashState::enList::ChargeSlash:
         FacePlayerInstantYaw();
-
+        //ボスが斬る攻撃をした際に再生される音.
         if (m_CurrentTime >= m_ChargeTime)
         {
             m_List = enList::SlashAttack;
@@ -75,6 +85,7 @@ void BossSlashState::Update()
                 m_pOwner->ChangeAnim(Boss::enBossAnim::SlashToIdol);
             }
         }
+        //時間経過でアイドルのアニメーションを再生する.
         else
         {
             if (m_CurrentTime >= m_ChargeTime + m_AttackTime)
@@ -89,6 +100,7 @@ void BossSlashState::Update()
         // Idol遷移も時間で統一（余韻用に固定）
         if (m_TransitionOnAnimEnd_Exit)
         {
+            //アニメーションが終了した際にアイドルへ戻す.
             if (m_pOwner->IsAnimEnd(Boss::enBossAnim::SlashToIdol))
             {
                 if (!m_IsDebugStop)
@@ -130,11 +142,13 @@ void BossSlashState::Exit()
 {
     BossAttackStateBase::Exit();
 	// window 制御のコライダーを確実にOFF
+    //ボスの右の当たり判定を強制的に消す.
 	m_pOwner->SetColliderActiveByName("boss_Hand_R", false);
 }
 
 std::pair<Boss::enBossAnim, float> BossSlashState::GetParryAnimPair()
 {
+    //パリィが成功したときに停止させる秒数.
     return std::pair(Boss::enBossAnim::Slash, 2.360f);
 }
 
