@@ -69,7 +69,7 @@ private:
 	float m_FireElapsed;
 
 	//レーザーのパラメータ.
-	float m_LaserDamege;
+	float m_LaserDamage;
 	float m_LaserRadius;
 	float m_LaserRange;
 

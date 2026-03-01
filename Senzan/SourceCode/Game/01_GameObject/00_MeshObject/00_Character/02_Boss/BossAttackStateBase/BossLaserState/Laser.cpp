@@ -18,7 +18,7 @@ Laser::Laser(Boss* owner)
     , m_FireDuration(1.0f)
     , m_FireElapsed(0.0f)
     
-    , m_LaserDamege(10.0f)
+    , m_LaserDamage(10.0f)
     , m_LaserRadius(5.0f)
     , m_LaserRange(200.0f)
     
@@ -184,6 +184,17 @@ void Laser::Draw()
 
 void Laser::Exit()
 {
+    try
+    {
+        SaveSettings();
+    }
+    catch (...)
+    {
+    }
+    if (auto* Col = m_pOwner->GetShoutCollider())
+    {
+        Col->SetActive(false);
+    }
 }
 
 std::pair<Boss::enBossAnim, float> Laser::GetParryAnimPair()
@@ -193,13 +204,69 @@ std::pair<Boss::enBossAnim, float> Laser::GetParryAnimPair()
 
 void Laser::DrawImGui()
 {
+#if _DEBUG
+    ImGui::Begin(IMGUI_JP("BossLaser State"));
+    ImGui::Text(IMGUI_JP("Laser State: %d"), static_cast<int>(m_State));
+    CImGuiManager::Slider<float>(IMGUI_JP("チャージ時間"), m_ChargeDuration, 0.0f, 5.0f, true);
+    CImGuiManager::Slider<float>(IMGUI_JP("発射時間"), m_FireDuration, 0.0f, 5.0f, true);
+    CImGuiManager::Slider<float>(IMGUI_JP("ダメージ"), m_LaserDamage, 0.0f, 100.0f, true);
+    CImGuiManager::Slider<float>(IMGUI_JP("範囲"), m_LaserRadius, 0.0f, 200.0f, true);
+    CImGuiManager::Slider<float>(IMGUI_JP("射程"), m_LaserRange, 0.0f, 1000.0f, true);
+
+    // Debug controls for forcing state
+    if (ImGui::Button(IMGUI_JP("Force Charge"))) { m_State = enLaser::Charge; m_ChargeElapsed = 0.0f; }
+    ImGui::SameLine();
+    if (ImGui::Button(IMGUI_JP("Force Fire"))) { m_State = enLaser::Fire; m_FireElapsed = 0.0f; if (auto* c = m_pOwner->GetShoutCollider()) { c->SetActive(true); } }
+    ImGui::SameLine();
+    if (ImGui::Button(IMGUI_JP("Force Cool"))) { m_State = enLaser::Cool; }
+    ImGui::SameLine();
+    if (ImGui::Button(IMGUI_JP("Force Trans"))) { m_State = enLaser::Trans; }
+    BossAttackStateBase::DrawImGui();
+    // collider debug
+    if (auto* col = m_pOwner->GetShoutCollider()) {
+        ImGui::Separator();
+        ImGui::Text(IMGUI_JP("Shout Collider: Active=%s Radius=%.2f"), col->GetActive() ? "ON" : "OFF", col->GetRadius());
+        DirectX::XMFLOAT3 off = col->GetPositionOffset();
+        ImGui::Text(IMGUI_JP("Offset: (%.2f, %.2f, %.2f)"), off.x, off.y, off.z);
+    }
+    if (ImGui::Button(IMGUI_JP("Load"))) { try { LoadSettings(); } catch (...) {} }
+    ImGui::SameLine();
+    if (ImGui::Button(IMGUI_JP("Save"))) { try { SaveSettings(); } catch (...) {} }
+    ImGui::End();
+#endif
 }
 
 void Laser::LoadSettings()
 {
+    auto filePath = GetSettingsFileName();
+    if (!filePath.is_absolute()) {
+        filePath = std::filesystem::current_path() / "Data" / "Json" / "Boss" / filePath;
+    }
+    if (!std::filesystem::exists(filePath)) return;
+
+    json j = FileManager::JsonLoad(filePath);
+    if (j.contains("ChargeDuration")) m_ChargeDuration = j["ChargeDuration"].get<float>();
+    if (j.contains("FireDuration")) m_FireDuration = j["FireDuration"].get<float>();
+    if (j.contains("LaserDamage")) m_LaserDamage = j["LaserDamage"].get<float>();
+    if (j.contains("LaserRadius")) m_LaserRadius = j["LaserRadius"].get<float>();
+    if (j.contains("LaserRange")) m_LaserRange = j["LaserRange"].get<float>();
 }
 
 void Laser::SaveSettings() const
 {
+    auto filePath = GetSettingsFileName();
+    if (!filePath.is_absolute()) {
+        auto dir = std::filesystem::current_path() / "Data" / "Json" / "Boss";
+        std::filesystem::create_directories(dir);
+        filePath = dir / filePath;
+    }
+    json j = SerializeSettings();
+    j["ChargeDuration"] = m_ChargeDuration;
+    j["FireDuration"] = m_FireDuration;
+    j["LaserDamage"] = m_LaserDamage;
+    j["LaserRadius"] = m_LaserRadius;
+    j["LaserRange"] = m_LaserRange;
+    FileManager::JsonSave(filePath, j);
+
 }
 
