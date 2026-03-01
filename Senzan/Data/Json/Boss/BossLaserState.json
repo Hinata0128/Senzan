@@ -7,7 +7,7 @@
   "ChargeDuration": 1.0,
   "ColliderWindows": [],
   "FireDuration": 0.6000000238418579,
-  "LaserDamage": 10.0,
+  "LaserDamage": 30.0,
   "LaserRadius": 5.0,
   "LaserRange": 439.2340087890625,
   "MovementWindows": [],
