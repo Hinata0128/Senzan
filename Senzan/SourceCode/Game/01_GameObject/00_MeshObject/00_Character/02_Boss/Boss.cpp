@@ -35,6 +35,10 @@
 #include "Resource/Effect/EffectResource.h"
 #include "System/Utility/Math/Math.h"
 
+//作成しているボスの攻撃のコードのインクルードを書く.
+#include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossLaserState/Laser.h"
+
+
 #include <atomic>
 #include <chrono>
 

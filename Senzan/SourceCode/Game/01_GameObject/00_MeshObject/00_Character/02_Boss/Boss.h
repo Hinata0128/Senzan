@@ -46,6 +46,9 @@ class BossSpecialDamageState;
 
 class SkinMesh;
 
+//作成していく攻撃のクラスの前方宣言.
+class Laser;
+
 /***********************************************************************
 *    ボスキャラクラス.
 **/
@@ -68,6 +71,10 @@ class Boss
     friend BossParryState;
     friend BossMoveContinueState;
     friend BossSpecialDamageState;
+
+    //フレンドにしてボスの位置等を取得する.
+    friend Laser;
+
 
     //ボスのアニメーションの列挙.
     enum class enBossAnim : byte
