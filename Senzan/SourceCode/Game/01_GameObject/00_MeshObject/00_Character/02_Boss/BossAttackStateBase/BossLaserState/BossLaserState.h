@@ -1,57 +1,81 @@
 ﻿#pragma once
+#include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossAttackStateBase.h"
 
-#include "..//BossAttackStateBase.h"
+/*******************************************************************
+*	ボスのレーザー攻撃.
+*	エフェクトでレーザーを表示させてそれに当たり判定を追尾させるように作成していく.
+*	担当：　西村 日向
+**/
 
+//前方宣言.
 class BossIdolState;
 class Boss;
 
-class BossLaserState final : public BossAttackStateBase
+
+class Laser
+	: public BossAttackStateBase
 {
 public:
-    enum class enLaser : unsigned char
-    {
-        None,
-        Charge,
-        Fire,
-        Cool,
-        Trans
-    };
-
+	//レーザーの攻撃タイミングの取得用
+	//列挙型.
+	//メモリの節約のために1バイト0~255に制限している.
+	enum class enLaser : unsigned char
+	{
+		None,	//何もしない.
+		Charge,	//攻撃をする前の前兆.
+		Fire,	//攻撃をする(レーザー).
+		Cool,	//攻撃終了.
+		Trans,	//レーザー攻撃が終了した際にアイドルへの遷移をする.
+	};
 public:
-    BossLaserState(Boss* owner);
-    ~BossLaserState() override;
+	//コンストラクタ.
+	Laser(Boss* owner);
+	//デストラクタ.
+	~Laser() override;
+	//最初に入る.
+	void Enter() override;
+	//動作関数(毎フレーム).
+	void Update() override;
+	//すべてのUpdate()が終わった時に入るUpdate().
+	void LateUpdate() override;
+	//描画(レーザーのエフェクトを表示させる).
+	void Draw() override;
+	//終了時に入る.
+	void Exit() override;
 
-    void Enter() override;
-    void Update() override;
-    void LateUpdate() override;
-    void Draw() override;
-    void Exit() override;
-
-    std::pair<Boss::enBossAnim, float> GetParryAnimPair() override;
-
-    void DrawImGui() override;
-    void LoadSettings() override;
-    void SaveSettings() const override;
-    std::filesystem::path GetSettingsFileName() const override { return std::filesystem::path("BossLaserState.json"); }
-
+	//パリィ成功時の設定(※この攻撃ではパリィが不可能なので0.0fと書いておく).
+	std::pair<Boss::enBossAnim, float> GetParryAnimPair() override;
+	//デバッグ中にImGuiでLaserのステータスを変更できるように設定する.
+	void DrawImGui() override;
+	//Laserの攻撃のパラメータ用のjsonファイルの読み込み.
+	void LoadSettings() override;
+	//Laserの攻撃のパラメータ用のjsonファイルの保存.
+	void SaveSettings() const override;
+	//変更させるjsonファイルのパスの設定.
+	std::filesystem::path GetSettingsFileName() const override
+	{
+		return std::filesystem::path("Laser.json");
+	}
 private:
-    enLaser m_State;
+	//レーザー攻撃の列挙.
+	enLaser m_State;
 
-    // charge timing
-    float m_ChargeDuration;
-    float m_ChargeElapsed;
+	//レーザーのため時間.
+	float m_ChargeDuration;
+	float m_ChargeElapsed;
 
-    // fire timing
-    float m_FireDuration;
-    float m_FireElapsed;
+	//レーザーの発射時間.
+	float m_FireDuration;
+	float m_FireElapsed;
 
-    // laser parameters
-    float m_LaserDamage;
-    float m_LaserRadius;
-    float m_LaserRange;
+	//レーザーのパラメータ.
+	float m_LaserDamage;
+	float m_LaserRadius;
+	float m_LaserRange;
 
-    // effect played flag
-    bool m_EffectPlayed;
+	//エフェクト再生.
+	bool m_EffectPlayed;
 
-    std::shared_ptr<BossIdolState> m_pIdol;
+	//攻撃終了時にアイドルに遷移させるために必要.
+	std::shared_ptr<BossIdolState> m_pBossIdol;
 };

@@ -22,6 +22,8 @@ class BossJumpOnlState;
 class BossStompState;
 class BossThrowingState;
 
+class Laser;
+
 #include <random>
 #include <array>
 

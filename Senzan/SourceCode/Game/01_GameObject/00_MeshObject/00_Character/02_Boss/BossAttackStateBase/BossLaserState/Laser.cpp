@@ -83,7 +83,7 @@ void Laser::Update()
             //攻撃判定あり.
             Col->SetActive(true);
             //レーザーの大きさを時間経過に合わせて変化させる.
-            float T = (m_FireElapsed / (m_FireDuration / 0.0f ? m_FireDuration : 1.0f));
+            float T = (m_FireElapsed / (m_FireDuration > 0.0f ? m_FireDuration : 1.0f));
             if (T > 1.0f)
             {
                 //最大値を1.0fにする.
@@ -205,60 +205,110 @@ std::pair<Boss::enBossAnim, float> Laser::GetParryAnimPair()
 void Laser::DrawImGui()
 {
 #if _DEBUG
-    ImGui::Begin(IMGUI_JP("BossLaser State"));
-    ImGui::Text(IMGUI_JP("Laser State: %d"), static_cast<int>(m_State));
+    //レーザーのImGui表示.
+    ImGui::Begin(IMGUI_JP("レーザーのステータス"));
+    ImGui::Text(IMGUI_JP("Laser State : %d"), static_cast<int>(m_State));
     CImGuiManager::Slider<float>(IMGUI_JP("チャージ時間"), m_ChargeDuration, 0.0f, 5.0f, true);
     CImGuiManager::Slider<float>(IMGUI_JP("発射時間"), m_FireDuration, 0.0f, 5.0f, true);
     CImGuiManager::Slider<float>(IMGUI_JP("ダメージ"), m_LaserDamage, 0.0f, 100.0f, true);
     CImGuiManager::Slider<float>(IMGUI_JP("範囲"), m_LaserRadius, 0.0f, 200.0f, true);
     CImGuiManager::Slider<float>(IMGUI_JP("射程"), m_LaserRange, 0.0f, 1000.0f, true);
-
-    // Debug controls for forcing state
-    if (ImGui::Button(IMGUI_JP("Force Charge"))) { m_State = enLaser::Charge; m_ChargeElapsed = 0.0f; }
+    //レーザ攻撃をしている時に強制的に攻撃のタイミング等をImGuiで設定できる.
+    if (ImGui::Button(IMGUI_JP("Force Charge"))) 
+    {
+        m_State = enLaser::Charge; m_ChargeElapsed = 0.0f; 
+    }
     ImGui::SameLine();
-    if (ImGui::Button(IMGUI_JP("Force Fire"))) { m_State = enLaser::Fire; m_FireElapsed = 0.0f; if (auto* c = m_pOwner->GetShoutCollider()) { c->SetActive(true); } }
+    if (ImGui::Button(IMGUI_JP("Force Fire"))) 
+    { m_State = enLaser::Fire; m_FireElapsed = 0.0f; if (auto* c = m_pOwner->GetShoutCollider()) 
+        { 
+            c->SetActive(true); 
+        } 
+    }
     ImGui::SameLine();
-    if (ImGui::Button(IMGUI_JP("Force Cool"))) { m_State = enLaser::Cool; }
+    if (ImGui::Button(IMGUI_JP("Force Cool"))) 
+    {
+        m_State = enLaser::Cool; 
+    }
     ImGui::SameLine();
-    if (ImGui::Button(IMGUI_JP("Force Trans"))) { m_State = enLaser::Trans; }
+    if (ImGui::Button(IMGUI_JP("Force Trans")))
+    {
+        m_State = enLaser::Trans;
+    }
     BossAttackStateBase::DrawImGui();
-    // collider debug
-    if (auto* col = m_pOwner->GetShoutCollider()) {
+    //当たり判定表示用.
+    if (auto* col = m_pOwner->GetShoutCollider())
+    {
         ImGui::Separator();
         ImGui::Text(IMGUI_JP("Shout Collider: Active=%s Radius=%.2f"), col->GetActive() ? "ON" : "OFF", col->GetRadius());
         DirectX::XMFLOAT3 off = col->GetPositionOffset();
         ImGui::Text(IMGUI_JP("Offset: (%.2f, %.2f, %.2f)"), off.x, off.y, off.z);
     }
-    if (ImGui::Button(IMGUI_JP("Load"))) { try { LoadSettings(); } catch (...) {} }
+    if (ImGui::Button(IMGUI_JP("Load")))
+    { 
+        try 
+        { 
+            LoadSettings(); 
+        } 
+        catch (...) 
+        {}
+    }
     ImGui::SameLine();
-    if (ImGui::Button(IMGUI_JP("Save"))) { try { SaveSettings(); } catch (...) {} }
+    if (ImGui::Button(IMGUI_JP("Save")))
+    {
+        try 
+        {
+            SaveSettings();
+        }
+        catch (...) {} 
+    }
     ImGui::End();
+
 #endif
 }
 
+//Laserの攻撃のパラメータ用のjsonファイルの読み込み.
 void Laser::LoadSettings()
 {
-    auto filePath = GetSettingsFileName();
-    if (!filePath.is_absolute()) {
-        filePath = std::filesystem::current_path() / "Data" / "Json" / "Boss" / filePath;
+    auto FilePath = GetSettingsFileName();
+    if (std::filesystem::exists(FilePath) == false)
+    {
+        return;
     }
-    if (!std::filesystem::exists(filePath)) return;
 
-    json j = FileManager::JsonLoad(filePath);
-    if (j.contains("ChargeDuration")) m_ChargeDuration = j["ChargeDuration"].get<float>();
-    if (j.contains("FireDuration")) m_FireDuration = j["FireDuration"].get<float>();
-    if (j.contains("LaserDamage")) m_LaserDamage = j["LaserDamage"].get<float>();
-    if (j.contains("LaserRadius")) m_LaserRadius = j["LaserRadius"].get<float>();
-    if (j.contains("LaserRange")) m_LaserRange = j["LaserRange"].get<float>();
+    //jsonに入る攻撃等のパラメータのこうもく.
+    json j = FileManager::JsonLoad(FilePath);
+    if (j.contains("ChargeDuration"))
+    {
+        m_ChargeDuration = j["ChargeDuration"].get<float>();
+    }
+    if (j.contains("FireDuration"))
+    {
+        m_FireDuration = j["FireDuration"].get<float>();
+    }
+    if (j.contains("LaserDuration"))
+    {
+        m_LaserDamage = j["LaserDuration"].get<float>();
+    }
+    if (j.contains("LaserRadius"))
+    {
+        m_LaserRadius = j["LaserRadius"].get<float>();
+    }
+    if (j.contains("LaserRange"))
+    {
+        m_LaserRange = j["LaserRange"].get<float>();
+    }
 }
 
+//Laserの攻撃のパラメータ用のjsonファイルの保存.
 void Laser::SaveSettings() const
 {
-    auto filePath = GetSettingsFileName();
-    if (!filePath.is_absolute()) {
-        auto dir = std::filesystem::current_path() / "Data" / "Json" / "Boss";
-        std::filesystem::create_directories(dir);
-        filePath = dir / filePath;
+    auto FilePath = GetSettingsFileName();
+    if (FilePath.is_absolute() == false)
+    {
+        auto Dir = std::filesystem::current_path() / "Data" / "Json" / "Boss";
+        std::filesystem::create_directories(Dir);
+        FilePath = Dir / FilePath;
     }
     json j = SerializeSettings();
     j["ChargeDuration"] = m_ChargeDuration;
@@ -266,7 +316,6 @@ void Laser::SaveSettings() const
     j["LaserDamage"] = m_LaserDamage;
     j["LaserRadius"] = m_LaserRadius;
     j["LaserRange"] = m_LaserRange;
-    FileManager::JsonSave(filePath, j);
-
+    FileManager::JsonSave(FilePath, j);
 }
 
