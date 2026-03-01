@@ -1,2 +1,24 @@
 {
+  "AnimSpeeds": {
+    "Attack": 1.0,
+    "Charge": 1.0,
+    "Exit": 1.0
+  },
+  "ChargeDuration": 3.0,
+  "ColliderWindows": [],
+  "FireDuration": 1.0,
+  "LaserDamage": 10.0,
+  "LaserRadius": 5.0,
+  "LaserRange": 200.0,
+  "MovementWindows": [],
+  "m_AttackAmount": 0.0,
+  "m_AttackBoneName": "",
+  "m_AttackTime": 0.0,
+  "m_ChargeTime": 0.0,
+  "m_ColliderHeight": 0.0,
+  "m_ColliderWidth": 0.0,
+  "m_EndTime": 2.0,
+  "m_TransitionOnAnimEnd_Attack": false,
+  "m_TransitionOnAnimEnd_Charge": false,
+  "m_TransitionOnAnimEnd_Exit": false
 }

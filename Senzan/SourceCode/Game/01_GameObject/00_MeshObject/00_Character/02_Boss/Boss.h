@@ -46,8 +46,6 @@ class BossSpecialDamageState;
 
 class SkinMesh;
 
-//作成していく攻撃のクラスの前方宣言.
-class Laser;
 
 /***********************************************************************
 *    ボスキャラクラス.
@@ -72,8 +70,6 @@ class Boss
     friend BossMoveContinueState;
     friend BossSpecialDamageState;
 
-    //フレンドにしてボスの位置等を取得する.
-    friend Laser;
 
 
     //ボスのアニメーションの列挙.

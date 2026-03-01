@@ -12,7 +12,7 @@ class BossIdolState;
 class Boss;
 
 
-class Laser
+class BossLaserState
 	: public BossAttackStateBase
 {
 public:
@@ -29,9 +29,9 @@ public:
 	};
 public:
 	//コンストラクタ.
-	Laser(Boss* owner);
+	BossLaserState(Boss* owner);
 	//デストラクタ.
-	~Laser() override;
+	~BossLaserState() override;
 	//最初に入る.
 	void Enter() override;
 	//動作関数(毎フレーム).

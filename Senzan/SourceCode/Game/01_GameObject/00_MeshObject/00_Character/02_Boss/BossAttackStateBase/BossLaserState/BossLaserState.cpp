@@ -1,4 +1,4 @@
-﻿#include "Laser.h"
+﻿#include "BossLaserState.h"
 
 #include "Game//04_Time//Time.h"
 #include "Game//01_GameObject//00_MeshObject//00_Character//02_Boss//Boss.h"
@@ -8,7 +8,7 @@
 #include "System/Utility/FileManager/FileManager.h"
 #include <cmath>
 
-Laser::Laser(Boss* owner)
+BossLaserState::BossLaserState(Boss* owner)
     : BossAttackStateBase(owner)
     , m_State(enLaser::None)
 
@@ -37,12 +37,12 @@ Laser::Laser(Boss* owner)
     }
 }
 
-Laser::~Laser()
+BossLaserState::~BossLaserState()
 {
 }
 
 //最初に入る.
-void Laser::Enter()
+void BossLaserState::Enter()
 {
     try
     {
@@ -68,7 +68,7 @@ void Laser::Enter()
     m_pOwner->ChangeAnim(Boss::enBossAnim::LaserCharge);
 }
 
-void Laser::Update()
+void BossLaserState::Update()
 {
     BossAttackStateBase::Update();
     //デルタタイムの取得.
@@ -101,10 +101,10 @@ void Laser::Update()
     //switch文で状態の遷移をする.
     switch (m_State)
     {
-    case Laser::enLaser::None:
+    case BossLaserState::enLaser::None:
         //何も書かない.
         break;
-    case Laser::enLaser::Charge:
+    case BossLaserState::enLaser::Charge:
         m_ChargeElapsed += deltaTime;
         //毎フレームプレイヤーの方に向き続ける.
         FacePlayerYawContinuous();
@@ -116,7 +116,7 @@ void Laser::Update()
             m_pOwner->ChangeAnim(Boss::enBossAnim::Laser);
         }
         break;
-    case Laser::enLaser::Fire:
+    case BossLaserState::enLaser::Fire:
         m_FireElapsed += deltaTime;
         if (m_EffectPlayed == false)
         {
@@ -151,7 +151,7 @@ void Laser::Update()
             m_State = enLaser::Cool;
         }
         break;
-    case Laser::enLaser::Cool:
+    case BossLaserState::enLaser::Cool:
         //レーザーの当たり判定取得.
         if (auto* col = m_pOwner->GetLaserCollider())
         {
@@ -165,7 +165,7 @@ void Laser::Update()
         }
 
         break;
-    case Laser::enLaser::Trans:
+    case BossLaserState::enLaser::Trans:
         //アイドルへの遷移.
         m_pOwner->GetStateMachine()->ChangeState(std::make_shared<BossIdolState>(m_pOwner));
         break;
@@ -174,15 +174,15 @@ void Laser::Update()
     }
 }
 
-void Laser::LateUpdate()
+void BossLaserState::LateUpdate()
 {
 }
 
-void Laser::Draw()
+void BossLaserState::Draw()
 {
 }
 
-void Laser::Exit()
+void BossLaserState::Exit()
 {
     try
     {
@@ -197,12 +197,12 @@ void Laser::Exit()
     }
 }
 
-std::pair<Boss::enBossAnim, float> Laser::GetParryAnimPair()
+std::pair<Boss::enBossAnim, float> BossLaserState::GetParryAnimPair()
 {
     return std::pair(Boss::enBossAnim::Laser, 0.0f);
 }
 
-void Laser::DrawImGui()
+void BossLaserState::DrawImGui()
 {
 #if _DEBUG
     //レーザーのImGui表示.
@@ -270,7 +270,7 @@ void Laser::DrawImGui()
 }
 
 //Laserの攻撃のパラメータ用のjsonファイルの読み込み.
-void Laser::LoadSettings()
+void BossLaserState::LoadSettings()
 {
     auto FilePath = GetSettingsFileName();
     if (std::filesystem::exists(FilePath) == false)
@@ -288,10 +288,10 @@ void Laser::LoadSettings()
     {
         m_FireDuration = j["FireDuration"].get<float>();
     }
-    if (j.contains("LaserDuration"))
+    if (j.contains("LaserDamage")) 
     {
-        m_LaserDamage = j["LaserDuration"].get<float>();
-    }
+        m_LaserDamage = j["LaserDamage"].get<float>();
+    }    
     if (j.contains("LaserRadius"))
     {
         m_LaserRadius = j["LaserRadius"].get<float>();
@@ -303,7 +303,7 @@ void Laser::LoadSettings()
 }
 
 //Laserの攻撃のパラメータ用のjsonファイルの保存.
-void Laser::SaveSettings() const
+void BossLaserState::SaveSettings() const
 {
     auto FilePath = GetSettingsFileName();
     if (FilePath.is_absolute() == false)

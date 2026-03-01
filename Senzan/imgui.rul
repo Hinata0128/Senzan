@@ -19,12 +19,14 @@ Size=111,64
 Collapsed=0
 
 [Window][Gamemain Debug]
-Pos=60,60
+ViewportPos=193,88
+ViewportId=0xA6127C36
 Size=107,114
 Collapsed=0
 
 [Window][フレームキャプチャ]
-Pos=60,60
+ViewportPos=22,277
+ViewportId=0x9B379F4F
 Size=297,324
 Collapsed=0
 
@@ -46,6 +48,21 @@ Collapsed=1
 [Window][Camera Debug]
 Pos=60,60
 Size=126,176
+Collapsed=0
+
+[Window][レーザーのステータス]
+Pos=60,60
+Size=347,302
+Collapsed=0
+
+[Window][BossStomp State]
+Pos=60,60
+Size=169,564
+Collapsed=0
+
+[Window][ボス斬撃設定]
+Pos=60,60
+Size=32,40
 Collapsed=0
 
 [Docking][Data]
