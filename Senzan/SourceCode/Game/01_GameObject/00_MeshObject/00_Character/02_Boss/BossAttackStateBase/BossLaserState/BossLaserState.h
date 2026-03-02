@@ -35,6 +35,7 @@ public:
     std::filesystem::path GetSettingsFileName() const override { return std::filesystem::path("BossLaserState.json"); }
 
 private:
+    //レーザー攻撃の列挙.
     enLaser m_State;
 
     // charge timing
