@@ -13,6 +13,8 @@
 //前方宣言.
 class SkinMesh;
 class BossIdolState;
+class Boss;
+class Player;
 
 class Slash final
 	: public BossAttackStateBase
@@ -61,7 +63,7 @@ public:
 private:
     // ホーミング停止秒数（m_StateTimer がこの値を超えるまでだけ追尾）
     float m_HomingEndTime = 0.2f;
-
+    //斬る攻撃の列挙.
     enSlash m_State;
 
 };
