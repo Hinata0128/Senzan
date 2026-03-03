@@ -33,7 +33,8 @@ Size=297,324
 Collapsed=0
 
 [Window][Boss Attack Debug]
-Pos=60,60
+ViewportPos=327,195
+ViewportId=0x2FD7CCA9
 Size=415,550
 Collapsed=1
 
@@ -43,7 +44,8 @@ Size=196,124
 Collapsed=0
 
 [Window][Boss Attack State]
-Pos=382,51
+ViewportPos=649,186
+ViewportId=0xE0E159F5
 Size=785,1026
 Collapsed=1
 

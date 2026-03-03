@@ -64,7 +64,8 @@
 #include "Utility/Transform/Transform.h"// Transform.	
 
 #include "System/Singleton/SingletonTemplate.h"	// シングルトンテンプレト.	
-#include "System/Singleton/Debug/Log/DebugLog.h"	// シングルトンテンプレト.	
+#include "System/Singleton/Debug/Log/DebugLog.h"	// シングルトンテンプレト.
+#include "System/Singleton/Debug/CollisionVisualizer/CollisionVisualizer.h"
 
 #define _SOUND_STOP_DEBUG 0
 

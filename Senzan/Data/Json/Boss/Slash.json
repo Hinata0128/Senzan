@@ -1,4 +1,40 @@
 {
-  "m_AttackAmount": 5.0,
-  "m_HomingEndTime": 0.2
+  "AnimSpeeds": {
+    "Attack": 7.644,
+    "Charge": 1.3425,
+    "Exit": 1.3515
+  },
+  "ColliderWindows": [
+    {
+      "BoneName": "boss_Hand_R",
+      "duration": 0.5,
+      "justTime": 0.3,
+      "offset": [ 0.0, 0.0, 15.0 ],
+      "start": 0.874
+    }
+  ],
+  "ParryWindows": [
+    {
+      "start": 0.0,
+      "duration": 0.8
+    }
+  ],
+  "MovementWindows": [
+    {
+      "direction_offset_deg": 180.0,
+      "distance": 1.0,
+      "duration": 0.267,
+      "easing": 24,
+      "speed": 10.0,
+      "start": 0.8,
+      "use_direction_offset": false
+    }
+  ],
+  "m_AttackAmount": 8.0,
+  "m_AttackTime": 0.658,
+  "m_ChargeTime": 0.874,
+  "m_EndTime": 1.5,
+  "m_ColliderHeight": 18.99,
+  "m_ColliderWidth": 13.96,
+  "m_TransitionOnAnimEnd_Exit": true
 }

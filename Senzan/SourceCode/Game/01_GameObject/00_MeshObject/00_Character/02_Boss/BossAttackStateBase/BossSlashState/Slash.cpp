@@ -50,68 +50,49 @@ void Slash::Update()
     BossAttackStateBase::Update();
     UpdateBaseLogic(deltaTime);
 
-    bool isTransition = false;
-
-    switch (m_State)
+    // --- 当たり判定の位置調整（床から手へ移動させる） ---
+    if (auto* col = m_pOwner->GetSlashCollider())
     {
-    case enList::ChargeSlash:
-        if (m_CurrentTime < m_HomingEndTime) FacePlayerYawContinuous();
-        if (m_CurrentTime >= m_ChargeTime) {
-            m_State = enList::SlashAttack;
-            if (!m_IsSwingSoundPlayed) {
-                SoundManager::GetInstance().Play("BossSwing", false);
-                m_IsSwingSoundPlayed = true;
-            }
-        }
-        break;
-
-    case enList::SlashAttack:
-        // --- 修正ポイント：当たり判定の実行 ---
-        if (auto* col = m_pOwner->GetSlashCollider())
+        if (col->GetActive())
         {
-            // 1. 攻撃フェーズ中は強制的に判定をONにする
-            col->SetActive(true);
-
-            // 2. 攻撃力を設定（m_AttackAmount が 0 だとダメージが入らない）
+            // 1. 攻撃力を設定
             col->SetAttackAmount(m_AttackAmount);
 
-            // 3. ヒット時の音処理
-            if (!m_IsHitSoundPlayed && !col->GetCollisionEvents().empty())
-            {
+            // 2. 座標オフセットを設定（床[0,0,0]から手の位置へ）
+            // JSONに "offset": [0.0, 0.0, -15.0] とある場合、その値をセットします
+            // もしこれでも床にあるなら、Yに高い値（例: 10.0）を入れて浮くか確認してください
+            col->SetPositionOffset(0.0f, 10.0f, 5.0f);
+
+            // 3. ヒットSE
+            if (!m_IsHitSoundPlayed && !col->GetCollisionEvents().empty()) {
                 SoundManager::GetInstance().Play("Player_Damage_SE", false);
                 m_IsHitSoundPlayed = true;
             }
         }
+    }
 
-        // 状態遷移
-        if (m_TransitionOnAnimEnd_Attack) {
-            if (m_pOwner->IsAnimEnd(Boss::enBossAnim::Slash)) {
-                m_State = enList::SlashIdol;
-                m_pOwner->ChangeAnim(Boss::enBossAnim::SlashToIdol);
-            }
-        }
-        else if (m_CurrentTime >= m_ChargeTime + m_AttackTime) {
+    // --- 状態遷移 ---
+    switch (m_State)
+    {
+    case enList::ChargeSlash:
+        FacePlayerYawContinuous();
+        if (m_CurrentTime >= m_ChargeTime) m_State = enList::SlashAttack;
+        break;
+
+    case enList::SlashAttack:
+        if (m_CurrentTime >= m_ChargeTime + m_AttackTime) {
             m_State = enList::SlashIdol;
             m_pOwner->ChangeAnim(Boss::enBossAnim::SlashToIdol);
         }
         break;
 
     case enList::SlashIdol:
-        // 攻撃が終わったら判定を消す
-        if (auto* col = m_pOwner->GetSlashCollider()) col->SetActive(false);
-
-        if (m_TransitionOnAnimEnd_Exit)
-            isTransition = m_pOwner->IsAnimEnd(Boss::enBossAnim::SlashToIdol);
-        else
-            isTransition = (m_CurrentTime >= m_ChargeTime + m_AttackTime + m_EndTime);
-
-        if (isTransition && !m_IsDebugStop) {
+        if (m_CurrentTime >= m_ChargeTime + m_AttackTime + m_EndTime) {
             m_pOwner->GetStateMachine()->ChangeState(std::make_shared<BossIdolState>(m_pOwner));
         }
         break;
     }
 }
-
 void Slash::LateUpdate()
 {
     BossAttackStateBase::LateUpdate();
