@@ -35,6 +35,9 @@
 #include "Resource/Effect/EffectResource.h"
 #include "System/Utility/Math/Math.h"
 
+#include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossSlashState/Slash.h"
+
+
 #include <atomic>
 #include <chrono>
 
@@ -234,7 +237,8 @@ void Boss::Update()
             IMGUI_JP("Throwing"),
             IMGUI_JP("Parry"),
             IMGUI_JP("Laser"),
-            IMGUI_JP("SpecialDamage")
+            IMGUI_JP("SpecialDamage"),
+            IMGUI_JP("SlashChack")
         };
         constexpr int state_count = static_cast<int>(sizeof(state_labels) / sizeof(state_labels[0]));
         const int buttons_per_row = 4;
@@ -261,6 +265,7 @@ void Boss::Update()
                 case 8: m_State->ChangeState(std::make_shared<BossParryState>(this)); break;
                 case 9: m_State->ChangeState(std::make_shared<BossLaserState>(this)); break;
                 case 10: m_State->ChangeState(std::make_shared<BossSpecialDamageState>(this)); break;
+                case 11: m_State->ChangeState(std::make_shared<Slash>(this)); break;
                 default: break;
                 }
             }

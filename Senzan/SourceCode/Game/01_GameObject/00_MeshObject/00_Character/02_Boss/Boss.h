@@ -44,6 +44,8 @@ class BossChargeState;
 class BossParryState;
 class BossSpecialDamageState;
 
+class Slash;
+
 class SkinMesh;
 
 /***********************************************************************
@@ -68,6 +70,8 @@ class Boss
     friend BossParryState;
     friend BossMoveContinueState;
     friend BossSpecialDamageState;
+
+    friend Slash;
 
     //ボスのアニメーションの列挙.
     enum class enBossAnim : byte

@@ -9,12 +9,14 @@ Size=130,262
 Collapsed=0
 
 [Window][Boss Debug]
-Pos=60,60
+ViewportPos=673,79
+ViewportId=0x69AA37D3
 Size=356,120
 Collapsed=0
 
 [Window][PlayerStateDebug]
-Pos=60,60
+ViewportPos=1242,118
+ViewportId=0xD1507DF7
 Size=111,64
 Collapsed=0
 
@@ -36,12 +38,12 @@ Size=415,550
 Collapsed=1
 
 [Window][BossSpinning State]
-Pos=60,60
+Pos=441,87
 Size=196,124
 Collapsed=0
 
 [Window][Boss Attack State]
-Pos=60,60
+Pos=382,51
 Size=785,1026
 Collapsed=1
 
@@ -56,7 +58,7 @@ Size=347,302
 Collapsed=0
 
 [Window][BossStomp State]
-Pos=60,60
+Pos=284,106
 Size=169,564
 Collapsed=0
 
@@ -68,6 +70,11 @@ Collapsed=0
 [Window][レーザーのステータス]
 Pos=60,60
 Size=347,302
+Collapsed=0
+
+[Window][Slash設定]
+Pos=60,60
+Size=285,142
 Collapsed=0
 
 [Docking][Data]
