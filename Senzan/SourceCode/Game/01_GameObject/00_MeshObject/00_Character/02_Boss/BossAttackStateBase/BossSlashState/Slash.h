@@ -17,53 +17,54 @@ class Boss;
 class Player;
 
 class Slash final
-	: public BossAttackStateBase
+    : public BossAttackStateBase
 {
 public:
-    //斬る攻撃タイミングの取得用
-    //列挙型.
-    //メモリの節約のために1バイト0~255に制限している.
-    enum class enSlash : unsigned char
+    // 斬る攻撃タイミングの取得用
+    // 列挙型.
+    // メモリの節約のために1バイト0~255に制限している.
+    enum class enList : byte
     {
-        none,			//何もしない.
-        ChargeSlash,	//チャージ.
-        SlashAttack,	//斬る攻撃.
-        SlashIdol,		//斬る攻撃から待機.
+        none,
+        ChargeSlash,    // チャージ
+        SlashAttack,    // 斬る攻撃
+        SlashIdol,      // 待機（後隙）
     };
 
 public:
-	Slash(Boss* owner);
-	~Slash();
+    Slash(Boss* owner);
+    ~Slash();
 
-    //最初に入る.
+    // 最初に入る.
     void Enter() override;
-    //動作関数(毎フレーム).
+    // 動作関数(毎フレーム).
     void Update() override;
-    //すべてのUpdate()が終わった時に入るUpdate().
+    // すべてのUpdate()が終わった時に入るUpdate().
     void LateUpdate() override;
-    //描画(レーザーのエフェクトを表示させる).
+    // 描画.
     void Draw() override;
-    //終了時に入る.
+    // 終了時に入る.
     void Exit() override;
 
     // PlayerのParry成功時硬直させたいアニメーションとタイミング.
-    //パリィ成功時の設定.
+    // パリィ成功時の設定.
     std::pair<Boss::enBossAnim, float> GetParryAnimPair() override;
 
-    //デバッグ中にImGuiでLaserのステータスを変更できるように設定する.
+    // デバッグ中にImGuiでステータスを変更できるように設定する.
     void DrawImGui() override;
-    //Laserの攻撃のパラメータ用のjsonファイルの読み込み.
+    // パラメータ用のjsonファイルの読み込み.
     void LoadSettings() override;
-    //Laserの攻撃のパラメータ用のjsonファイルの保存.
+    // パラメータ用のjsonファイルの保存.
     void SaveSettings() const override;
-    //変更させるjsonファイルのポスを設定.
+    // 変更させるjsonファイルのパスを設定.
     std::filesystem::path GetSettingsFileName() const override { return std::filesystem::path("Slash.json"); }
 
-
 private:
-    // ホーミング停止秒数（m_StateTimer がこの値を超えるまでだけ追尾）
+    // ホーミング停止秒数
     float m_HomingEndTime = 0.2f;
-    //斬る攻撃の列挙.
-    enSlash m_State;
-
+    // 斬る攻撃の状態管理.
+    enList m_State = enList::none;
+    // SE再生フラグ
+    bool m_IsSwingSoundPlayed = false;
+    bool m_IsHitSoundPlayed = false;
 };

@@ -15,7 +15,8 @@ Size=356,120
 Collapsed=0
 
 [Window][PlayerStateDebug]
-Pos=60,60
+ViewportPos=1242,118
+ViewportId=0xD1507DF7
 Size=111,64
 Collapsed=0
 
@@ -69,6 +70,11 @@ Collapsed=0
 [Window][レーザーのステータス]
 Pos=60,60
 Size=347,302
+Collapsed=0
+
+[Window][Slash設定]
+Pos=60,60
+Size=285,142
 Collapsed=0
 
 [Docking][Data]

@@ -22,6 +22,8 @@ class BossJumpOnlState;
 class BossStompState;
 class BossThrowingState;
 
+class Slash;
+
 #include <random>
 #include <array>
 
@@ -53,13 +55,13 @@ public:
     enum AttackId {
         Jump = 0,       // ジャンプ
         Shout = 1,      // 叫び
-        Slash = 2,      // 通常
+        CSlash = 2,      // 通常
         Spinning = 3,   // 回転
         Stomp = 4,      // とびかかり
         Throwing = 5,   // 岩投げ
         Laser = 6,      // レーザー.
         MoveContinue = 7, // そのまま移動3秒
-        Count = 8
+        Count = 8,
     };
 
     MovePhase m_Phase = MovePhase::Start;
@@ -108,6 +110,8 @@ private:
 	std::unique_ptr<BossThrowingState>		m_pThrowing;
 	std::unique_ptr<BossShoutState>			m_pShout;
 
+	std::unique_ptr<Slash> m_pSlashChack;
+
 	// === デバッグ用距離設定 ===
 	static inline float s_NearRange = 15.0f;      // 近距離の閾値
 	static inline float s_MidRange = 35.0f;       // 中距離の閾値
@@ -132,7 +136,7 @@ private:
     // 表示用日本語ラベル (順序: Jump, Shout, Slash, Spinning, Stomp, Throwing, Laser, MoveContinue)
     static inline const char* s_AttackNames[Count] = { "ジャンプ", "叫び", "通常", "回転", "とびかかり", "岩投げ", "レーザー", "そのまま移動" };
     // 内部保存用ID（英語）。JSONキーなどで使う。
-    static inline const char* s_AttackIds[Count] = { "Jump", "Shout", "Slash", "Spinning", "Stomp", "Throwing", "Laser", "MoveContinue" };
+    static inline const char* s_AttackIds[Count] = { "Jump", "Shout", "Slash", "Spinning", "Stomp", "Throwing", "Laser", "MoveContinue"};
     static inline const char* s_DistanceIds[DistCount] = { "Near", "Mid" };
 
     // === デバッグ強制攻撃選択 ===
