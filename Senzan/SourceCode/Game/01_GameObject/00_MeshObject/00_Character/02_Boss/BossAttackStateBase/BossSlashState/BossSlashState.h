@@ -6,6 +6,7 @@
 
 /*************************************************************
 *	ボスの攻撃: 斬る攻撃.
+*	担当者: 西村 日向
 **/
 
 class SkinMesh;
@@ -23,24 +24,34 @@ public:
 		SlashIdol,		//斬る攻撃から待機.
 	};
 public:
+	//コンストラクタ.
 	BossSlashState(Boss* owner);
+	//デストラクタ.
 	~BossSlashState();
-
-	void Enter() override;
-	void Update() override;
-	void LateUpdate() override;
-	void Draw() override;
-	void Exit() override;
+    //最初に入る.
+    void Enter() override;
+    //動作関数(毎フレーム).
+    void Update() override;
+    //すべてのUpdate()が終わった時に入るUpdate().
+    void LateUpdate() override;
+    //描画(レーザーのエフェクトを表示させる).
+    void Draw() override;
+    //終了時に入る.
+    void Exit() override;
 
     // PlayerのParry成功時硬直させたいアニメーションとタイミング.
+    //パリィ成功時の設定.
     std::pair<Boss::enBossAnim, float> GetParryAnimPair() override;
 
-    // 設定の読み書き
-    void LoadSettings() override;
-    void SaveSettings() const override;
-    std::filesystem::path GetSettingsFileName() const override { return std::filesystem::path("BossSlashState.json"); }
-    // ImGui でスライダー等を表示してパラメータを調整できるようにする
+    //デバッグ中にImGuiでLaserのステータスを変更できるように設定する.
     void DrawImGui() override;
+    //Laserの攻撃のパラメータ用のjsonファイルの読み込み.
+    void LoadSettings() override;
+    //Laserの攻撃のパラメータ用のjsonファイルの保存.
+    void SaveSettings() const override;
+    //変更させるjsonファイルのポスを設定.
+    std::filesystem::path GetSettingsFileName() const override { return std::filesystem::path("BossSlashState.json"); }
+
 private:
 	// ホーミング停止秒数（m_StateTimer がこの値を超えるまでだけ追尾）
 	float m_HomingEndTime = 0.2f;

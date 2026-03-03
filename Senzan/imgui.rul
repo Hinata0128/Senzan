@@ -9,7 +9,8 @@ Size=130,262
 Collapsed=0
 
 [Window][Boss Debug]
-Pos=60,60
+ViewportPos=673,79
+ViewportId=0x69AA37D3
 Size=356,120
 Collapsed=0
 
@@ -36,12 +37,12 @@ Size=415,550
 Collapsed=1
 
 [Window][BossSpinning State]
-Pos=60,60
+Pos=441,87
 Size=196,124
 Collapsed=0
 
 [Window][Boss Attack State]
-Pos=60,60
+Pos=382,51
 Size=785,1026
 Collapsed=1
 
@@ -56,7 +57,7 @@ Size=347,302
 Collapsed=0
 
 [Window][BossStomp State]
-Pos=60,60
+Pos=284,106
 Size=169,564
 Collapsed=0
 
