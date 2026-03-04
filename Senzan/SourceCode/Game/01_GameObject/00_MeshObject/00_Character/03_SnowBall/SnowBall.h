@@ -11,7 +11,7 @@ class SnowBall
 public:
 	SnowBall();
 	~SnowBall() override;
-
+    //動作関数.
     void Update() override;
     void LateUpdate() override {};
 	void Draw() override;
