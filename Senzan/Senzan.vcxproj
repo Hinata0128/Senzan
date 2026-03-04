@@ -280,6 +280,7 @@
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossStompState\BossStompState.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossIdolState\BossIdolState.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossMoveState\BossMoveState.cpp" />
+    <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\03_SnowBall\Ball.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\02_UIObject\TimerWarning\TimerWarning.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\02_UIObject\ULTSparkle\ULTSparkle.cpp" />
     <ClCompile Include="SourceCode\System\Singleton\Debug\CollisionVisualizer\CollisionVisualizer.cpp" />
@@ -391,6 +392,7 @@
     <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSlashState\Slash.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpecialDamageState\BossSpecialDamageState.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpinningState\BossSpinningState.h" />
+    <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\03_SnowBall\Ball.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\02_UIObject\TimerWarning\TimerWarning.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\02_UIObject\ULTSparkle\ULTSparkle.h" />
     <ClInclude Include="SourceCode\System\Singleton\Debug\CollisionVisualizer\CollisionVisualizer.h" />
