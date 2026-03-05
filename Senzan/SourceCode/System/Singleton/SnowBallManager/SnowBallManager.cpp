@@ -10,7 +10,7 @@ void SnowBallManager::Update()
         if (*it)
         {
             (*it)->Update();
-            if ((*it)->ShouldDestroy())
+            if ((*it)->Destroy())
             {
                 it = m_Pool.erase(it);
                 continue;
