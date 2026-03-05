@@ -4,6 +4,13 @@
 
 class ColliderBase;
 
+/********************************************************************
+*	雪玉クラス.
+*	このクラスは雪玉の動きを管理させて、
+* 　プレイヤーのもとに二次ベジェ曲線で飛ばす.
+*	制作者 : 西村 日向.
+**/
+
 class Ball final
 	: public MeshObject
 {
@@ -54,12 +61,13 @@ private:
 	//内部状態管理.
 	enum class enSnowBall : uint8_t
 	{
-		Idole = 0,
+		Idol = 0,
 		Launched,
 		HitFalling,
 		LandedFading,
 		Parried
 	};
+	enSnowBall m_State;
 	// 互換用フラグ（既存コード参照のため維持）
 	bool m_IsParried;
 	bool m_IsHitAnimPlaying;
