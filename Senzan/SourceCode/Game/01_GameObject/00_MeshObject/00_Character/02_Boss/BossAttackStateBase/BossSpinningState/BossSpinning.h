@@ -59,10 +59,10 @@ private:
 	//一周させるのでここは360.0fと書く.
 	float m_RotateToTalDeg;
 	//デフォルトのイージング.
-	MyEasing::Type m_EasingTyep;
+	MyEasing::Type m_EasingType;
 	//前フレームのイーズ角度.
-	float m_LastEasedAndle;
+	float m_LastEasedAngle;
 	float m_SecondSlashTimer;
-	float m_ScondSlashTiming;
-	bool m_ScondSlashed;
+	float m_SecondSlashTiming;
+	bool m_SecondSlashed;
 };
