@@ -273,6 +273,7 @@
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSlashState\Slash.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpecialDamageState\BossSpecialDamageState.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpinningState\BossSpinningState.cpp" />
+    <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpinningState\BossSpinning.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossThrowingState\BossThrowingState.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossDeadState\BossDeadState.cpp" />
     <ClCompile Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossShoutState\BossShoutState.cpp" />
@@ -393,6 +394,7 @@
     <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSlashState\Slash.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpecialDamageState\BossSpecialDamageState.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpinningState\BossSpinningState.h" />
+    <ClInclude Include="SourceCode\Game\01_GameObject\00_MeshObject\00_Character\02_Boss\BossAttackStateBase\BossSpinningState\BossSpinning.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\02_UIObject\TimerWarning\TimerWarning.h" />
     <ClInclude Include="SourceCode\Game\01_GameObject\02_UIObject\ULTSparkle\ULTSparkle.h" />
     <ClInclude Include="SourceCode\System\Singleton\Debug\CollisionVisualizer\CollisionVisualizer.h" />
