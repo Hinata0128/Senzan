@@ -48,6 +48,8 @@ class Slash;
 
 class SkinMesh;
 
+class Shout;
+
 /***********************************************************************
 *    ボスキャラクラス.
 **/
@@ -72,6 +74,7 @@ class Boss
     friend BossSpecialDamageState;
 
     friend Slash;
+	friend Shout;
 
     //ボスのアニメーションの列挙.
     enum class enBossAnim : byte
