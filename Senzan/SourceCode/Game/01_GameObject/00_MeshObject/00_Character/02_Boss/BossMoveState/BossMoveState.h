@@ -23,6 +23,7 @@ class BossStompState;
 class BossThrowingState;
 
 class Slash;
+class Shout;
 
 #include <random>
 #include <array>
@@ -54,7 +55,7 @@ public:
     // Attack identifiers (order matters for arrays)
     enum AttackId {
         Jump = 0,       // ジャンプ
-        Shout = 1,      // 叫び
+		CShout = 1,      // 叫び
         CSlash = 2,      // 通常
         Spinning = 3,   // 回転
         Stomp = 4,      // とびかかり
@@ -108,7 +109,7 @@ private:
 	std::unique_ptr<BossSlashState>			m_pSlash;
 	std::unique_ptr<BossStompState>			m_pStomp;
 	std::unique_ptr<BossThrowingState>		m_pThrowing;
-	std::unique_ptr<BossShoutState>			m_pShout;
+	std::unique_ptr<Shout>			m_pShout;
 
 	std::unique_ptr<Slash> m_pSlashChack;
 

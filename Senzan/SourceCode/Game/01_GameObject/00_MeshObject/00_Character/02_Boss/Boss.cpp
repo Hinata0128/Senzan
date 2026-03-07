@@ -37,6 +37,7 @@
 
 #include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossSlashState/Slash.h"
 
+#include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossShoutState/Shout.h"
 
 #include <atomic>
 #include <chrono>
