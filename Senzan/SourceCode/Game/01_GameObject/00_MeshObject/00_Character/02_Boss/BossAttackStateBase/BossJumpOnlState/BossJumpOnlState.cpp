@@ -186,6 +186,7 @@ void BossJumpOnlState::ChargeTime()
 	}
 }
 
+
 void BossJumpOnlState::JumpTime()
 {
  

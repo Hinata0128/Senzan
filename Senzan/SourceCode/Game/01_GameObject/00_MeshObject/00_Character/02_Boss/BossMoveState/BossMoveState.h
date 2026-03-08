@@ -25,6 +25,7 @@ class BossThrowingState;
 class Slash;
 class Shout;
 class BossSpinning;
+class BossJump;
 
 #include <random>
 #include <array>
@@ -106,7 +107,7 @@ private:
 	float m_Timer = 0.0f;
 	float m_SecondTimer = 120.0f;
 
-	std::unique_ptr<BossJumpOnlState>		m_pAttack;
+	std::unique_ptr<BossJump>		m_pAttack;
 	std::unique_ptr<BossSlashState>			m_pSlash;
 	std::unique_ptr<BossStompState>			m_pStomp;
 	std::unique_ptr<BossThrowingState>		m_pThrowing;

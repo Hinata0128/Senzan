@@ -16,6 +16,7 @@
 #include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossSlashState/Slash.h"
 #include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossShoutState/Shout.h"
 #include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossSpinningState/BossSpinning.h"
+#include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossJumpOnlState/BossJump.h"
 
 static constexpr double Move_Run_AnimSpeed = 5.0;
 
@@ -424,7 +425,7 @@ void BossMoveState::Update()
             int id = s_ForceAttackIndex;
             switch (id)
             {
-            case AttackId::Jump: pushCandidate(AttackId::Jump, [this]() { return std::make_unique<BossJumpOnlState>(m_pOwner); }, distIndex); break;
+            case AttackId::Jump: pushCandidate(AttackId::Jump, [this]() { return std::make_unique<BossJump>(m_pOwner); }, distIndex); break;
             case AttackId::CShout: pushCandidate(AttackId::CShout, [this]() { return std::make_unique<Shout>(m_pOwner); }, distIndex); break;
             case AttackId::CSlash: pushCandidate(AttackId::CSlash, [this]() { return std::make_unique<Slash>(m_pOwner); }, distIndex); break;
             case AttackId::CSpinning: pushCandidate(AttackId::CSpinning, [this]() { return std::make_unique<BossSpinning>(m_pOwner); }, distIndex); break;
@@ -437,10 +438,10 @@ void BossMoveState::Update()
         }
         else
         {
-            //pushCandidate(AttackId::Jump, [this]() { return std::make_unique<BossJumpOnlState>(m_pOwner); }, distIndex);
+            pushCandidate(AttackId::Jump, [this]() { return std::make_unique<BossJump>(m_pOwner); }, distIndex);
             //pushCandidate(AttackId::CShout, [this]() { return std::make_unique<Shout>(m_pOwner); }, distIndex);
             //pushCandidate(AttackId::CSlash, [this]() { return std::make_unique<Slash>(m_pOwner); }, distIndex);
-            pushCandidate(AttackId::CSpinning, [this]() { return std::make_unique<BossSpinning>(m_pOwner); }, distIndex);
+            //pushCandidate(AttackId::CSpinning, [this]() { return std::make_unique<BossSpinning>(m_pOwner); }, distIndex);
             //pushCandidate(AttackId::Stomp, [this]() { return std::make_unique<BossStompState>(m_pOwner); }, distIndex);
             //pushCandidate(AttackId::Throwing, [this]() { return std::make_unique<BossThrowingState>(m_pOwner); }, distIndex);
             //pushCandidate(AttackId::Laser, [this]() { return std::make_unique<BossLaserState>(m_pOwner); }, distIndex);
