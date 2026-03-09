@@ -41,6 +41,9 @@
 #include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossSpinningState/BossSpinning.h"
 #include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossJumpOnlState/BossJump.h"
 
+#include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossSpecialDamageState/BossSpecialDamage.h"
+#include "00_MeshObject/00_Character/02_Boss/BossAttackStateBase/BossSpecialState/BossSpecialState.h"
+
 #include <atomic>
 #include <chrono>
 

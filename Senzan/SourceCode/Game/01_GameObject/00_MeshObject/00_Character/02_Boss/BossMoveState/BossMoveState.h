@@ -26,6 +26,7 @@ class Slash;
 class Shout;
 class BossSpinning;
 class BossJump;
+class BossSpecialState;
 
 #include <random>
 #include <array>
@@ -109,7 +110,7 @@ private:
 
 	std::unique_ptr<BossJump>		m_pAttack;
 	std::unique_ptr<BossSlashState>			m_pSlash;
-	std::unique_ptr<BossStompState>			m_pStomp;
+	std::unique_ptr<BossSpecialState>			m_pStomp;
 	std::unique_ptr<BossThrowingState>		m_pThrowing;
 	std::unique_ptr<Shout>			m_pShout;
 
