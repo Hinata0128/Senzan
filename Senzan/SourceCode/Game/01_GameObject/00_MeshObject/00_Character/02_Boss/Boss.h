@@ -51,6 +51,8 @@ class SkinMesh;
 class Shout;
 class BossSpinning;
 class BossJump;
+class BossSpecialState;
+class BossSpecialDamage;
 
 /***********************************************************************
 *    ボスキャラクラス.
@@ -79,6 +81,10 @@ class Boss
 	friend Shout;
 	friend BossSpinning;
 	friend BossJump;
+
+    friend BossSpecialState;
+    friend BossSpecialDamage;
+
 
     //ボスのアニメーションの列挙.
     enum class enBossAnim : byte
